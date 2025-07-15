@@ -53,8 +53,12 @@ class Tracking:
             import wandb
 
             settings = None
-            if config and config["trainer"].get("wandb_proxy", None):
-                settings = wandb.Settings(https_proxy=config["trainer"]["wandb_proxy"])
+            if config:
+                settings = wandb.Settings(
+                    https_proxy=config["trainer"].get("wandb_proxy", None),
+                    run_id=config["trainer"].get("wandb_run_id", None),
+                    resume="allow"
+                )
             wandb.init(project=project_name, name=experiment_name, config=config, settings=settings)
             self.logger["wandb"] = wandb
 

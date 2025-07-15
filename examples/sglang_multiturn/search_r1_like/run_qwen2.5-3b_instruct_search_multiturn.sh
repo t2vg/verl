@@ -16,8 +16,8 @@ TOOL_CONFIG="$CONFIG_PATH/tool_config/search_tool_config.yaml"
 
 MODEL_PATH="./checkpoints/Qwen2.5-3B-Instruct"
 
-#if USE_MULTINODE=1, then set alias launch='ray job submit', else launch='python3 -m'
-if [ "$USE_MULTINODE" -eq 1 ]; then
+USE_MULTINODE=${USE_MULTINODE:-0}
+if [ $USE_MULTINODE -eq 1 ]; then
     launch='ray job submit --address="http://localhost:8265" --runtime-env=verl/trainer/runtime_env.yaml -- python3 -m'
 else
     launch='python3 -m'

@@ -7,7 +7,7 @@ tools:
       timeout: 30
       type: native
       tokenizer_path: ./checkpoints/Qwen2.5-3B-Instruct
-      max_retrieve_tokens: 500
+      max_retrieve_tokens: 3000
     tool_schema:
       type: function
       function:

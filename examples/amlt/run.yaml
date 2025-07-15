@@ -20,7 +20,7 @@ code:
   ignore:
   - .venv
   - .vscode
-  - data
+  - /data
   - checkpoints
   - logs
   - outputs

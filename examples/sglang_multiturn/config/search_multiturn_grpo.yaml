@@ -21,3 +21,7 @@ actor_rollout_ref:
       enable: True
       max_assistant_turns: 2
       format: qwen
+
+trainer:
+  rollout_data_dir: ${trainer.default_local_dir}/rollout_data
+  log_val_generations: 50

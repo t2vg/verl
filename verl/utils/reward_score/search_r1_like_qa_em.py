@@ -106,7 +106,7 @@ def compute_score(solution_str, ground_truth, method="strict", format_score=0.0,
     answer = extract_solution(solution_str=solution_str)
     open_count, close_count = count_answer_tags(solution_str)
     do_print = random.randint(1, 64) == 1
-
+    """
     if do_print:
         print("--------------------------------")
         print(f"Golden answers: {ground_truth['target']}")
@@ -115,7 +115,7 @@ def compute_score(solution_str, ground_truth, method="strict", format_score=0.0,
         else:
             print("Extracted answer: None!")
         print(f"Solution string: {solution_str}")
-
+    """
     if answer is None:
         return 0
     else:

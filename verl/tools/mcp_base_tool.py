@@ -62,6 +62,7 @@ class MCPBaseTool(BaseTool):
 
     async def _call_tool(self, instance_id, parameters) -> tuple[str, dict]:
         err_msg = ""
+        call_tool_result = None
         try:
             call_tool_result = await ClientManager.call_tool(self.name, parameters, self.timeout)
         except ClientError as e:
@@ -70,6 +71,13 @@ class MCPBaseTool(BaseTool):
             err_msg = f"\n Connection failed: {e}"
         except Exception as e:
             err_msg = f"\n An unexpected error occurred: {e}"
+        
+        if call_tool_result is None:
+            metadata = {
+                "api_request_error": err_msg,
+            }
+            logger.error(f"Tool call failed: {err_msg}")
+            return "Error: Tool call failed", metadata
 
         logger.debug(f"Tool result for instance {instance_id} with tool {self.name}: {call_tool_result.content}")
         result, metadata = self._parse_tool_result(call_tool_result.content)
